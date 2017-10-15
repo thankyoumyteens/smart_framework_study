@@ -13,7 +13,7 @@
     <bytecodeTargetLevel>
       <module name="framework" target="1.8" />
       <module name="smart" target="1.5" />
-      <module name="use" target="1.5" />
+      <module name="use" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
