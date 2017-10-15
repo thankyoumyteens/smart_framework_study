@@ -28,6 +28,7 @@ import java.util.Map;
 
 /**
  * Created by Admin on 2017/10/15.
+ * 框架入口
  */
 @WebServlet(urlPatterns = "/*", loadOnStartup = 0)
 public class DispatcherServlet extends HttpServlet {
