@@ -11,8 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-hello<br>
-<%=(String)request.getAttribute("service")%><br>
-<%=(long)request.getAttribute("param")%><br>
+<form action="test" method="post">
+    <input type="text" name="id" id="id">
+    <button type="submit">完成</button>
+</form>
 </body>
 </html>
