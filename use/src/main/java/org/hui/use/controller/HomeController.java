@@ -19,6 +19,8 @@ public class HomeController {
     @Action("get:/index")
     public View index(Param param) {
         View view = new View("index.jsp");
-        return view.addModel("service", homeService.test());
+        return view.
+                addModel("service", homeService.test()).
+                addModel("param", param.getLong("id"));
     }
 }

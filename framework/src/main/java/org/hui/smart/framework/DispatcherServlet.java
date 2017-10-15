@@ -7,9 +7,7 @@ import org.hui.smart.framework.bean.View;
 import org.hui.smart.framework.helper.BeanHelper;
 import org.hui.smart.framework.helper.ConfigHelper;
 import org.hui.smart.framework.helper.ControllerHelper;
-import org.hui.smart.framework.util.JsonUtil;
-import org.hui.smart.framework.util.ReflectionUtil;
-import org.hui.smart.framework.util.StringUtil;
+import org.hui.smart.framework.util.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -64,7 +62,20 @@ public class DispatcherServlet extends HttpServlet {
                 String paramValue = req.getParameter(paramName);
                 paramMap.put(paramName, paramValue);
             }
-            // TODO
+            String body = CodecUtil.decodeURL(StreamUtil.getString(req.getInputStream()));
+            if (StringUtil.isNotEmpty(body)) {
+                String[] params = StringUtil.splitSpring(body, "&");
+                if (ArrayUtil.isNotEmpty(params)) {
+                    for (String param : params) {
+                        String[] array = StringUtil.splitSpring(param, "=");
+                        if (ArrayUtil.isNotEmpty(array) && array.length == 2) {
+                            String paramName = array[0];
+                            String paramValue = array[1];
+                            paramMap.put(paramName, paramValue);
+                        }
+                    }
+                }
+            }
             Param param = new Param(paramMap);
             // 调用Action
             Method actionMethod = handler.getActionMethod();

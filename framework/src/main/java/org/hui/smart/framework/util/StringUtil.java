@@ -23,4 +23,8 @@ public final class StringUtil {
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
     }
+
+    public static String[] splitSpring(String param, String split) {
+        return StringUtils.split(param, split);
+    }
 }

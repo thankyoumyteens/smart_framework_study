@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-hello <%=(String)request.getAttribute("service")%>
+hello<br>
+<%=(String)request.getAttribute("service")%><br>
+<%=(long)request.getAttribute("param")%><br>
 </body>
 </html>
