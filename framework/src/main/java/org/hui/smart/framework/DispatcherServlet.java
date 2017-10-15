@@ -1,20 +1,21 @@
 package org.hui.smart.framework;
 
-import org.hui.smart.framework.bean.Param;
-import org.hui.smart.framework.helper.BeanHelper;
-import org.hui.smart.framework.util.ReflectionUtil;
 import org.hui.smart.framework.bean.Data;
 import org.hui.smart.framework.bean.Handler;
+import org.hui.smart.framework.bean.Param;
 import org.hui.smart.framework.bean.View;
+import org.hui.smart.framework.helper.BeanHelper;
 import org.hui.smart.framework.helper.ConfigHelper;
 import org.hui.smart.framework.helper.ControllerHelper;
 import org.hui.smart.framework.util.JsonUtil;
+import org.hui.smart.framework.util.ReflectionUtil;
 import org.hui.smart.framework.util.StringUtil;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ import java.util.Map;
 /**
  * Created by Admin on 2017/10/15.
  */
-//@WebServlet(urlPatterns = "/*", loadOnStartup = 0)
+@WebServlet(urlPatterns = "/*", loadOnStartup = 0)
 public class DispatcherServlet extends HttpServlet {
 
     @Override
