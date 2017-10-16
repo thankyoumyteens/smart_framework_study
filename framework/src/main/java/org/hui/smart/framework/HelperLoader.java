@@ -1,10 +1,7 @@
 package org.hui.smart.framework;
 
 
-import org.hui.smart.framework.helper.BeanHelper;
-import org.hui.smart.framework.helper.ClassHelper;
-import org.hui.smart.framework.helper.ControllerHelper;
-import org.hui.smart.framework.helper.IocHelper;
+import org.hui.smart.framework.helper.*;
 import org.hui.smart.framework.util.ClassUtil;
 
 /**
@@ -15,7 +12,7 @@ public final class HelperLoader {
         Class<?>[] classList = {
                 ClassHelper.class,
                 BeanHelper.class,
-//                AopHelper.class,
+                AopHelper.class,
                 IocHelper.class,
                 ControllerHelper.class
         };
