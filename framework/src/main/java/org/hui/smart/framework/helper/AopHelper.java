@@ -1,9 +1,11 @@
 package org.hui.smart.framework.helper;
 
 import org.hui.smart.framework.annotation.Aspect;
+import org.hui.smart.framework.annotation.Service;
 import org.hui.smart.framework.proxy.AspectProxy;
 import org.hui.smart.framework.proxy.Proxy;
 import org.hui.smart.framework.proxy.ProxyManager;
+import org.hui.smart.framework.proxy.TransactionProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,6 +68,17 @@ public class AopHelper {
     private static Map<Class<?>, Set<Class<?>>> createProxyMap() {
         Map<Class<?>, Set<Class<?>>> proxyMap = new HashMap<>();
         // 用户定义的所有代理类
+        addAspectProxy(proxyMap);
+        addTransactionProxy(proxyMap);
+        return proxyMap;
+    }
+
+    private static void addTransactionProxy(Map<Class<?>, Set<Class<?>>> proxyMap) {
+        Set<Class<?>> serviceClassSet = ClassHelper.getClassSetByAnnotation(Service.class);
+        proxyMap.put(TransactionProxy.class, serviceClassSet);
+    }
+
+    private static void addAspectProxy(Map<Class<?>, Set<Class<?>>> proxyMap) {
         Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBySuper(AspectProxy.class);
         for (Class<?> proxyClass: proxyClassSet) {
             if (proxyClass.isAnnotationPresent(Aspect.class)) {
@@ -74,7 +87,6 @@ public class AopHelper {
                 proxyMap.put(proxyClass, targetClassSet);
             }
         }
-        return proxyMap;
     }
 
     /**

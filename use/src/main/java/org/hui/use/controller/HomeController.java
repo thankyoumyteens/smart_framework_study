@@ -23,6 +23,7 @@ public class HomeController {
 
     @Action("post:/test")
     public View test(Param param) {
+        homeService.test2();
         View view = new View("index.jsp");
        return view.addModel("param", param.getLong("id"));
     }
