@@ -2,6 +2,7 @@ package org.hui.smart.framework.bean;
 
 
 import org.hui.smart.framework.util.CastUtil;
+import org.hui.smart.framework.util.CollectionUtil;
 
 import java.util.Map;
 
@@ -18,6 +19,10 @@ public class Param {
 
     public Map<String, Object> getParamMap() {
         return paramMap;
+    }
+
+    public boolean isEmpty() {
+        return CollectionUtil.isEmpty(paramMap);
     }
 
     /**

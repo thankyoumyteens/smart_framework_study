@@ -17,7 +17,7 @@ public class HomeController {
     private HomeService homeService;
 
     @Action("get:/index")
-    public View index(Param param) {
+    public View index() {
         return new View("index.jsp");
     }
 

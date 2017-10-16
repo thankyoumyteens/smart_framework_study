@@ -26,8 +26,12 @@ public class TransactionProxy implements Proxy {
             FLAG_HOLDER.set(true);
             try {
                 DatabaseHelper.beginTransaction();
+                LOGGER.debug("开始事务");
+                System.out.println("开始事务");
                 result = proxyChain.doProxyChain();
                 DatabaseHelper.commitTransaction();
+                LOGGER.debug("事务完成");
+                System.out.println("事务完成");
             } catch (Exception e) {
                 DatabaseHelper.rollbackTransaction();
                 throw e;
