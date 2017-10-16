@@ -4,6 +4,7 @@ import org.hui.smart.framework.annotation.Controller;
 import org.hui.smart.framework.annotation.Service;
 import org.hui.smart.framework.util.ClassUtil;
 
+import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,6 +60,36 @@ public final class ClassHelper {
         Set<Class<?>> classSet = new HashSet<>();
         classSet.addAll(getControllerClassSet());
         classSet.addAll(getServiceClassSet());
+        return classSet;
+    }
+
+    /**
+     * 获取所有子类
+     * @param superClass 父类
+     * @return
+     */
+    public static Set<Class<?>> getClassSetBySuper(Class<?> superClass) {
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (superClass.isAssignableFrom(cls) && !superClass.equals(cls)) {
+                classSet.add(cls);
+            }
+        }
+        return classSet;
+    }
+
+    /**
+     * 获取带有指定注解的所有类
+     * @param annotationClass
+     * @return
+     */
+    public static Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> annotationClass) {
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (cls.isAnnotationPresent(annotationClass)) {
+                classSet.add(cls);
+            }
+        }
         return classSet;
     }
 }
