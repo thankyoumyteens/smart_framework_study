@@ -4,8 +4,16 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 字符串工具类
+ *
+ * @author huangyong
+ * @since 1.0.0
  */
 public final class StringUtil {
+
+    /**
+     * 字符串分隔符
+     */
+    public static final String SEPARATOR = String.valueOf((char) 29);
 
     /**
      * 判断字符串是否为空
@@ -24,7 +32,10 @@ public final class StringUtil {
         return !isEmpty(str);
     }
 
-    public static String[] splitSpring(String param, String split) {
-        return StringUtils.split(param, split);
+    /**
+     * 分割固定格式的字符串
+     */
+    public static String[] splitString(String str, String separator) {
+        return StringUtils.splitByWholeSeparator(str, separator);
     }
 }

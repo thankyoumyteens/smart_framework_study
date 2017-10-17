@@ -64,10 +64,10 @@ public class DispatcherServlet extends HttpServlet {
             }
             String body = CodecUtil.decodeURL(StreamUtil.getString(req.getInputStream()));
             if (StringUtil.isNotEmpty(body)) {
-                String[] params = StringUtil.splitSpring(body, "&");
+                String[] params = StringUtil.splitString(body, "&");
                 if (ArrayUtil.isNotEmpty(params)) {
                     for (String param : params) {
-                        String[] array = StringUtil.splitSpring(param, "=");
+                        String[] array = StringUtil.splitString(param, "=");
                         if (ArrayUtil.isNotEmpty(array) && array.length == 2) {
                             String paramName = array[0];
                             String paramValue = array[1];
