@@ -25,4 +25,5 @@ public interface ConfigConstant {
     String APP_BASE_PACKAGE = "smart.app.base_package";
     String APP_JSP_PATH = "smart.app.jsp_path";
     String APP_RESOURCE_PATH = "smart.app.resource_path";
+    String APP_UPLOAD_LIMIT = "smart.app.upload_limit"; // 单位MB
 }

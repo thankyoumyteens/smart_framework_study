@@ -2,6 +2,7 @@ package org.hui.use.service;
 
 import org.hui.smart.framework.annotation.Service;
 import org.hui.smart.framework.bean.FileParam;
+import org.hui.smart.framework.helper.UploadHelper;
 import org.hui.use.model.Customer;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class CustomerService {
     }
 
     public boolean createCustomer(Map<String, Object> fieldMap, FileParam fileParam) {
-        return false;
+        UploadHelper.uploadFile("/tmp/upload/", fileParam);
+        return true;
     }
 }

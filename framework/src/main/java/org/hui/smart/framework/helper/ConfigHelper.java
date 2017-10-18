@@ -76,4 +76,13 @@ public final class ConfigHelper {
         return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.APP_RESOURCE_PATH,
                 "/static/");
     }
+
+    /**
+     * 可选
+     * 获取文件上传最大大小
+     * @return
+     */
+    public static int getAppUploadLimit() {
+        return PropsUtil.getInt(CONFIG_PROPS, ConfigConstant.APP_UPLOAD_LIMIT, 10);
+    }
 }

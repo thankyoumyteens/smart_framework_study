@@ -43,8 +43,8 @@
     <button type="submit">保存</button>
 </form>
 
-<script src="${BASE}/asset/lib/jquery/jquery.min.js"></script>
-<script src="${BASE}/asset/lib/jquery-form/jquery.form.min.js"></script>
+<script src="${BASE}/static/lib/jquery/jquery.min.js"></script>
+<script src="${BASE}/static/lib/jquery-form/jquery.form.min.js"></script>
 <script>
     $(function() {
         $('#customer_form').ajaxForm({
@@ -52,7 +52,7 @@
             url: '${BASE}/customer_create',
             success: function(data) {
                 if (data) {
-                    location.href = '${BASE}/customer';
+                    <%--location.href = '${BASE}/customer';--%>
                 }
             }
         });

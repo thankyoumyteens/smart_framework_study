@@ -32,6 +32,25 @@ public class CustomerController {
     }
 
     /**
+     * 显示客户基本信息
+     */
+//    @Action("get:/customer_show")
+//    public View show(Param param) {
+//        long id = param.getLong("id");
+//        Customer customer = customerService.getCustomer(id);
+//        return new View("customer_show.jsp").addModel("customer", customer);
+//    }
+
+    /**
+     * 进入 创建客户 界面
+     */
+    @Action("get:/customer_create")
+    public View create() {
+        return new View("customer_create.jsp");
+    }
+
+
+    /**
      * 处理 创建客户 请求
      */
     @Action("post:/customer_create")

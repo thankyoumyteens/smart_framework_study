@@ -6,9 +6,9 @@ package org.hui.smart.framework.bean;
 public class FormParam {
 
     private String fieldName;
-    private String fieldValue;
+    private Object fieldValue;
 
-    public FormParam(String fieldName, String fieldValue) {
+    public FormParam(String fieldName, Object fieldValue) {
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
     }
@@ -17,7 +17,7 @@ public class FormParam {
         return fieldName;
     }
 
-    public String getFieldValue() {
+    public Object getFieldValue() {
         return fieldValue;
     }
 }
