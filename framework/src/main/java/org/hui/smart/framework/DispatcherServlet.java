@@ -47,44 +47,50 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-        String requestMethod = request.getMethod().toLowerCase();
-        String requestPath = request.getPathInfo();
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletHelper.init(request, response);
 
-        if (requestPath.equals("/favicon.ico")) {
-            return;
-        }
+        try {
+            String requestMethod = request.getMethod().toLowerCase();
+            String requestPath = request.getPathInfo();
 
-        Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
-        if (handler != null) {
-            Class<?> controllerClass = handler.getControllerClass();
-            Object controllerBean = BeanHelper.getBean(controllerClass);
-
-            // 将请求参数存储到Param
-            Param param;
-            if (UploadHelper.isMultipart(request)) {
-                // 文件上传请求
-                param = UploadHelper.createParam(request);
-            } else {
-                // 普通请求
-                param = RequestHelper.createParam(request);
+            if (requestPath.equals("/favicon.ico")) {
+                return;
             }
 
-            // 调用Action
-            Object result;
-            Method actionMethod = handler.getActionMethod();
-            if (param.isEmpty()) {
-                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
-            } else {
-                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
+            Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
+            if (handler != null) {
+                Class<?> controllerClass = handler.getControllerClass();
+                Object controllerBean = BeanHelper.getBean(controllerClass);
+
+                // 将请求参数存储到Param
+                Param param;
+                if (UploadHelper.isMultipart(request)) {
+                    // 文件上传请求
+                    param = UploadHelper.createParam(request);
+                } else {
+                    // 普通请求
+                    param = RequestHelper.createParam(request);
+                }
+
+                // 调用Action
+                Object result;
+                Method actionMethod = handler.getActionMethod();
+                if (param.isEmpty()) {
+                    result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
+                } else {
+                    result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
+                }
+                // 处理返回结果
+                if (result instanceof View) {
+                    handleViewResult(request, response, (View) result);
+                } else if (result instanceof Data) {
+                    // 返回json
+                    handleDataResult(response, (Data) result);
+                }
             }
-            // 处理返回结果
-            if (result instanceof View) {
-                handleViewResult(request, resp, (View) result);
-            } else if (result instanceof Data) {
-                // 返回json
-                handleDataResult(resp, (Data) result);
-            }
+        } finally {
+            ServletHelper.destroy();
         }
     }
 
