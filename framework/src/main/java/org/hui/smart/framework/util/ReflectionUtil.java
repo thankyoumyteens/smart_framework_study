@@ -31,6 +31,14 @@ public final class ReflectionUtil {
     }
 
     /**
+     * 创建实例（根据类名）
+     */
+    public static Object newInstance(String className) {
+        Class<?> cls = ClassUtil.loadClass(className);
+        return newInstance(cls);
+    }
+
+    /**
      * 执行方法
      * @param object 执行方法的对象
      * @param method 执行的方法

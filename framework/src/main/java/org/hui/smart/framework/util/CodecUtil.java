@@ -2,7 +2,7 @@ package org.hui.smart.framework.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.apache.commons.codec.digest.DigestUtils;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
@@ -47,7 +47,7 @@ public final class CodecUtil {
     /**
      * MD5 加密
      */
-//    public static String md5(String source) {
-//        return DigestUtils.md5Hex(source);
-//    }
+    public static String md5(String source) {
+        return DigestUtils.md5Hex(source);
+    }
 }
